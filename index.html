@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Pendaftaran</title>
+  <style>
+    body {
+      background-color: rgba(169, 169, 169, 0.3);
+    }
+    
+    form {
+      background-color: #fff;
+      margin-top: 50px;
+      border-radius: 10px;
+      width: 97%;
+      margin-left: 5px;
+    }
+    
+    input {
+      width: 300px;
+      height: 30px;
+      margin-left: 15px;
+      margin-top: 5px;
+      outline: none;
+    }
+    
+    label b {
+      margin-left: 15px;
+    }
+    
+    .submit button {
+      width: 310px;
+      height: 40px;
+      background-color: red;
+      border: 0px solid red;
+      margin-top: 30px;
+      margin-left: 13px;
+      border-radius: 10px;
+    }
+    
+    a button {
+      width: 40px;
+      height: 30px;
+      background-color: red;
+      border: 0px solid red;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <a href="beranda.html"><button><--</button></a>
+  <form id="registrationForm">
+    <br>
+    <center><h2 style="color: red;">Daftar</h2></center>
+    <br>
+    <label for="name"><b>Nama Lengkap</b></label><br>
+    <input placeholder="Nama Lengkap" type="text" id="name" name="name"><br><br>
+    
+    <label for="name"><b>Nomor</b></label><br>
+    <input placeholder="Nomor" type="number" id="number" name="number"><br><br>
+    
+    <label for="username"><b>Username</b></label><br>
+    <input placeholder="Username" type="text" id="username" name="username"><br><br>
+    
+    <label for="password"><b>Password</b></label><br>
+    <input placeholder="Password" type="password" id="password" name="password"><br><br>
+    <div class="submit">
+    <button type="submit"><b>Daftar</b></button><br><br><br>
+    </div>
+  </form>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var name = document.getElementById("name").value;
+      var number = document.getElementById("number").value;
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      
+      // Lakukan validasi input sesuai kebutuhan
+      
+      // Simpan data pengguna ke penyimpanan yang sesuai (misalnya, basis data) atau menggunakan local storage
+      // Di sini, contoh menggunakan local storage
+      localStorage.setItem("username", username);
+      localStorage.setItem("name", name);
+      
+      // Arahkan pengguna ke halaman beranda setelah pendaftaran selesai
+      window.location.href = "beranda.html";
+    });
+  </script>
+</body>
+</html>

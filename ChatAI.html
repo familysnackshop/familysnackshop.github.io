@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ruang Chat Tanya Jawab</title>
+    <style>
+        /* CSS Styling */
+        body {
+          background-color: rgba(169, 169, 169, 0.2);
+        }
+        #chatbox {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        
+        .chatlog {
+            height: 500px; /* Ketinggian maksimum chatlog */
+            overflow-y: scroll; /* Membuat scroll muncul jika konten berlebihan */
+            margin-bottom: 10px;
+        }
+        
+        .chatlog .ai {
+            background-color: #ADD8E6;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-wrap: break-word;
+            margin-bottom: 5px;
+        }
+        
+        .user-input input {
+            position: fixed;
+            bottom: 0;
+            width: 70%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 5px;
+            outline: none;
+            margin-bottom: 50px;
+        }
+        
+        .user-input button {
+            position: fixed;
+            bottom: 50px;
+            margin-left: 290px;
+            background-color: #4CA;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        b {
+          text-decoration: none;
+        }
+        
+        button {
+      height: 42px;
+      width: 50px;
+      font-size: 15px;
+      border: 0px solid red;
+      background-color: red;
+      border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+  <a href="beranda.html">
+      <button>
+        <b><--</b>
+      </button></a><b style="color: red; text-size: 50px; text-decoration: none;">&nbsp;&nbsp;&nbsp;Family Snack Shop</b>
+        <div class="chatlog">
+            <p class="ai">Halo! Apa yang dapat saya bantu?</p>
+        </div>
+        <div class="user-input">
+            <input type="text" id="messageInput" placeholder="Tulis pesan di sini...">
+            <button type="button" id="submitmsg" onclick="sendMessage()">Kirim</button>
+        </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var input = document.getElementById("messageInput");
+            var submit = document.getElementById("submitmsg");
+            var chatlog = document.querySelector(".chatlog");
+
+            submit.addEventListener("click", function() {
+                var usermsg = input.value;
+                var userlog = document.createElement("p");
+                userlog.innerText = "Anda: " + usermsg;
+                chatlog.appendChild(userlog);
+                input.value = "";
+
+                var airesponses = {
+                    "hallo": "Hallo! Apa yang dapat saya bantu?",
+                    "tanya 2": "Jawaban 2",
+                    "tanya 3": "Jawaban 3",
+                    "tanya 4": "Jawaban 4",
+                    "apa kabar?": "Saya adalah AI, saya tidak punya perasaan. Bagaimana dengan Anda?",
+                    "siapa pembuatmu?": "Saya dirancang oleh HasanAI.",
+                    "ada berapa jenis logika dalam AI?": "Ada beberapa jenis logika dalam AI, termasuk logika proposisional, logika fuzzy, dan logika probabilistik."
+                };
+
+                var foundAnswer = false;
+                for (var question in airesponses) {
+                    if (usermsg.toLowerCase().includes(question)) {
+                        var answer = airesponses[question];
+                        var ailog = document.createElement("p");
+                        ailog.classList.add("ai");
+                        ailog.innerText = answer;
+                        chatlog.appendChild(ailog);
+                        foundAnswer = true;
+                        break;
+                    }
+                }
+
+                if (!foundAnswer) {
+                    var ailog = document.createElement("p");
+                    ailog.classList.add("ai");
+                    ailog.innerText = "AI: Maaf, saya tidak memahami pertanyaan Anda.";
+                    chatlog.appendChild(ailog);
+                }
+
+                chatlog.scrollTop = chatlog.scrollHeight;
+            });
+        });
+    </script>
+</body>
+</html>
